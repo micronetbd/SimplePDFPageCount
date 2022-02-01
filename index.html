@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF.js Example to Count Number of Pages</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center"> Counting PDF Document Pages with PDF.js </h1>
+        <div class="form-group container">
+            <label for"file">Upload PDF File:</label>
+            <input type="file" name="" id="file" accept=".pdf" required class="form-control">
+        </div>
+        <div id="info">
+
+
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+<script>
+    let pdf = document.getElementById('file')
+
+    //onchange event (new pdf uploaded)
+    pdf.onchange = function (event) {
+        var file = event.target.files[0];
+        console.log(file)
+
+        //filereader api
+        var filereader = new FileReader()
+        filereader.onload = function () {
+            var typedarray = new Uint8Array(this.result)
+
+            const task = pdfjsLib.getDocument(typedarray)
+
+            task.promise.then((pdf) => {
+                console.log(pdf.numPages)
+                document.getElementById('info').innerHTML= 'Number of Pages in this PDF: ' + pdf.numPages;
+            })
+        }
+        filereader.readAsArrayBuffer(file);
+    }
+</script>
+</html>
