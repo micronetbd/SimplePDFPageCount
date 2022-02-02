@@ -2,7 +2,7 @@
   "name": "simplepdfpagecount",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "comp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
     "url": "https://github.com/micronetbd/SimplePDFPageCount/issues"
   },
   "homepage": "https://github.com/micronetbd/SimplePDFPageCount#readme",
-  "dependencies": {
+  "devDependencies": {
     "pdfjs-dist": "^2.12.313"
   }
 }
